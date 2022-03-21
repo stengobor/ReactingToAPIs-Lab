@@ -1,0 +1,12 @@
+body {
+  background-color: lightgreen;
+}
+
+#logo {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 600px;
+  height: 350px;
+}
