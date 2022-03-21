@@ -10,3 +10,36 @@ body {
   width: 600px;
   height: 350px;
 }
+
+#bio {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-top: 80px;
+    margin-left: 220px;
+    width: 900px;
+    height: 350px;
+}
+
+#btn1 {
+    display: block;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-left: 630px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    background-color: lightblue;
+    border-radius: 10px;
+}
+
+#btn2 {
+    display: block;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-left: 625px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: lightblue;
+    border-radius: 10px;
+}
