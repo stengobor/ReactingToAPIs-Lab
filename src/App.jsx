@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import StudioGhiblilogo from "./components/Studio_Ghibli_logo.png";
-import Films from "./components/Films"
 
 const App = () => {
-  // const [films, setFilms] = useState([]);
+  const [films, setFilms] = useState([]);
   const [people, setPeople] = useState([]);
+  const [show, setShow] = useState(false);
+  const [showPeople, setShowPeople] = useState(false);
 
-  // useEffect(() => {
-  //   fetch("https://ghibliapi.herokuapp.com/films")
-  //     .then((res) => res.json())
-  //     .then((allFilms) => setFilms(allFilms));
-  // }, []);
+  useEffect(() => {
+    fetch("https://ghibliapi.herokuapp.com/films")
+      .then((res) => res.json())
+      .then((allFilms) => setFilms(allFilms));
+  }, []);
 
   useEffect(() => {
     fetch("https://ghibliapi.herokuapp.com/people")
@@ -18,21 +19,18 @@ const App = () => {
       .then((allPeople) => setPeople(allPeople));
   }, []);
 
-
-  const afterClick = () => {
-    return(
-      <Films></Films>
-    )
-  }
-
   return (
     <>
       <nav>
         <img id="logo" src={StudioGhiblilogo} />
       </nav>
 
-      <button id="btn1" onClick={afterClick}>FILMS</button>
-      <button id="btn2">PEOPLE</button>
+      <button id="btn1" onClick={() => setShow(!show)}>
+        FILMS
+      </button>
+      <button id="btn2" onClick={() => setShowPeople(!showPeople)}>
+        PEOPLE
+      </button>
 
       <div id="bio" class="card text-center">
         <div class="card-body">
@@ -60,63 +58,65 @@ const App = () => {
           </p>
         </div>
       </div>
-
-      {/* <div class="container">
-        <section className="row justify-content-center mt-5">
-          {films.map((films) => (
-            <div className="col-md-6" key={`films-card-${films.id}`}>
-              <div className="card shadow my-2">
-                <img src={films.image} class="card-img-top" alt="..." />
-                <div className="card-body">
-                  <h4 className="card-header">{films.title}</h4>
-                  <p className="card-subtitle">Director: {films.director}</p>
-                  <p className="card-subtitle">Producer: {films.producer}</p>
-                  <p className="card-subtitle">
-                    Released in: {films.release_date}
-                  </p>
-                  <p className="card-subtitle">
-                    Rotten Tomatoes Score: {films.rt_score}
-                  </p>
-                  <div className="card-footer">
-                    <p className="card-subtitle">{films.description}</p>
-                    <a
-                      href="https://ghibliapi.herokuapp.com/films"
-                      class="card-link"
-                    >
-                      API Resource Link
-                    </a>
+      {show ? (
+        <div class="container">
+          <section className="row justify-content-center mt-5">
+            {films.map((films) => (
+              <div className="col-md-6" key={`films-card-${films.id}`}>
+                <div className="card shadow my-2">
+                  <img src={films.image} class="card-img-top" alt="..." />
+                  <div className="card-body">
+                    <h4 className="card-header">{films.title}</h4>
+                    <p className="card-subtitle">Director: {films.director}</p>
+                    <p className="card-subtitle">Producer: {films.producer}</p>
+                    <p className="card-subtitle">
+                      Released in: {films.release_date}
+                    </p>
+                    <p className="card-subtitle">
+                      Rotten Tomatoes Score: {films.rt_score}
+                    </p>
+                    <div className="card-footer">
+                      <p className="card-subtitle">{films.description}</p>
+                      <a
+                        href="https://ghibliapi.herokuapp.com/films"
+                        class="card-link"
+                      >
+                        API Resource Link
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </section>
-      </div> */}
-
-      <div class="container">
-        <section className="row justify-content-center mt-5">
-          {people.map((people) => (
-            <div className="col-md-6" key={`people-card-${people.id}`}>
-              <div className="card shadow my-2">
-                <div className="card-body">
-                  <h4 className="card-header">{people.name}</h4>
-                  <p className="card-subtitle">Gender: {people.gender}</p>
-                  <p className="card-subtitle">age: {people.age}</p>
-                  <p className="card-subtitle">Films: {people.films}</p>
-                  <div className="card-footer">
-                    <a
-                      href="https://ghibliapi.herokuapp.com/people"
-                      class="card-link"
-                    >
-                      API Resource Link
-                    </a>
+            ))}
+          </section>
+        </div>
+      ) : null}
+      {showPeople ? (
+        <div class="container">
+          <section className="row justify-content-center mt-5">
+            {people.map((people) => (
+              <div className="col-md-6" key={`people-card-${people.id}`}>
+                <div className="card shadow my-2">
+                  <div className="card-body">
+                    <h4 className="card-header">{people.name}</h4>
+                    <p className="card-subtitle">Gender: {people.gender}</p>
+                    <p className="card-subtitle">age: {people.age}</p>
+                    <p className="card-subtitle">Films: {people.films}</p>
+                    <div className="card-footer">
+                      <a
+                        href="https://ghibliapi.herokuapp.com/people"
+                        class="card-link"
+                      >
+                        API Resource Link
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </section>
-      </div>
+            ))}
+          </section>
+        </div>
+      ) : null}
     </>
   );
 };
