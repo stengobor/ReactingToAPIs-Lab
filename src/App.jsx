@@ -100,8 +100,9 @@ const App = () => {
                   <div className="card-body">
                     <h4 className="card-header">{people.name}</h4>
                     <p className="card-subtitle">Gender: {people.gender}</p>
-                    <p className="card-subtitle">age: {people.age}</p>
-                    <p className="card-subtitle">Films: {people.films}</p>
+                    <p className="card-subtitle">Age: {people.age}</p>
+                    <p className="card-subtitle">Eye Color: {people.eye_color}</p>
+                    <p className="card-subtitle">Hair Color: {people.hair_color}</p>
                     <div className="card-footer">
                       <a
                         href="https://ghibliapi.herokuapp.com/people"
